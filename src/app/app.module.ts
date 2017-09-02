@@ -10,6 +10,9 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { CalendarioPage } from "../pages/calendario/calendario";
 import { RegistrarPage } from "../pages/registrar/registrar";
 import { NotificacionesPage } from "../pages/notificaciones/notificaciones";
+import { CalendarComponent } from "../components/calendar/calendar";
+
+
 
 @NgModule({
   declarations: [
@@ -17,7 +20,8 @@ import { NotificacionesPage } from "../pages/notificaciones/notificaciones";
     CalendarioPage,
     RegistrarPage,
     NotificacionesPage,
-    TabsPage
+    TabsPage,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +38,7 @@ import { NotificacionesPage } from "../pages/notificaciones/notificaciones";
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
-export class AppModule {}
+export class AppModule { }
