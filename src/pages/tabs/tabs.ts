@@ -9,6 +9,7 @@ export class TabsPage {
   tab1Root = 'CalendarPage';
   tab2Root = 'RegisterPage';
   tab3Root = 'NotificationsPage';
+  tab4Root = 'AvailabilityPage';
 
   constructor() {
 
