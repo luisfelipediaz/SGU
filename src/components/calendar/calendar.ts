@@ -64,4 +64,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, AfterContentChe
   addEventSource(events) {
     return $(this.element.nativeElement).fullCalendar('addEventSource', events);
   }
+
+  removeEvent(event) {
+    return $(this.element.nativeElement).fullCalendar('removeEvents', event);
+  }
 }

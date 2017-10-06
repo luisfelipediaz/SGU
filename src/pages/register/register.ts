@@ -11,15 +11,7 @@ import { TaskProvider } from '../../providers/task/task';
 })
 export class RegisterPage {
 
-
-
-  task: Task = {
-    id: null,
-    name: '',
-    description: '',
-    priority: "M",
-    delivery: (new Date()).toISOString()
-  }
+  task: Task;
 
   formTask: FormGroup;
 
@@ -28,34 +20,51 @@ export class RegisterPage {
     public navParams: NavParams,
     public formBuilder: FormBuilder,
     public taskProvider: TaskProvider) {
+
+      if(!!navParams.data.task) this.task = navParams.data.task as Task;
+
+    this.task = this.task || new Task();
     this.createForm();
   }
 
   createForm(): any {
     this.formTask = this.formBuilder.group({
-      name: [this.task.name, Validators.required],
-      delivery: [this.task.delivery, Validators.required],
-      priority: [this.task.priority, Validators.required],
-      description: [this.task.description]
+      name: [ this.task.name, Validators.required ],
+      delivery: [ this.task.delivery, Validators.required ],
+      priority: [ this.task.priority, Validators.required ],
+      optimistic: [ this.task.optimistic, Validators.required ],
+      probable: [ this.task.probable, Validators.required ],
+      pessimistic: [ this.task.pessimistic, Validators.required ],
+      description: [ this.task.description ]
     });
-  }
-
-  ionViewDidLoad() {
-
   }
 
   save() {
+    this.task = this.prepareTask();
+    this.taskProvider.pushTask(this.task);
+
+    this.formTask.reset({
+      name: '',
+      description: ''
+    });
+    this.task.id = null;
+
+    if(!!this.navParams.data) this.navCtrl.pop();
+  }
+
+  prepareTask(): Task {
     let formTask = this.formTask.value;
 
-    this.task.name = formTask.name as string;
-    this.task.description = formTask.description as string;
-    this.task.priority = formTask.priority as string;
-    this.task.delivery = formTask.delivery as string;
-
-    this.taskProvider.pushTask(this.task).then(() => {
-      this.formTask.reset();
-      this.task.id = null;
-    });
+    return {
+      id: this.task.id,
+      name: formTask.name as string,
+      description: formTask.description as string,
+      priority: formTask.priority as string,
+      delivery: formTask.delivery as string,
+      optimistic: +formTask.optimistic,
+      probable: +formTask.probable,
+      pessimistic: +formTask.pessimistic
+    } as Task;
   }
 
 }

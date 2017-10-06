@@ -1,15 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Task } from '../../app/data-model';
 import { CalendarComponent } from '../../components/calendar/calendar';
 import { TaskProvider } from '../../providers/task/task';
-
-/**
- * Generated class for the CalendarPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Task } from '../../app/data-model';
 
 @IonicPage()
 @Component({
@@ -19,6 +12,7 @@ import { TaskProvider } from '../../providers/task/task';
 export class CalendarPage {
 
   @ViewChild(CalendarComponent) calendar: CalendarComponent;
+
 
   calendarOptions: Object = {
     height: 'parent',
@@ -36,8 +30,11 @@ export class CalendarPage {
         start: '2017-09-02'
       }
     ],
-    eventClick: (...a) => {
-      console.log(a)
+    eventClick: (event) => {
+      console.log(event);
+      this.navCtrl.push('RegisterPage', {
+        task: event.task as Task
+      })
     }
   };
 
@@ -48,14 +45,30 @@ export class CalendarPage {
 
     this.taskProvider.getTasks().subscribe(tasks => {
 
-      debugger;
-      this.calendarOptions["events"] = tasks.map((task) => {
+      let added = tasks.added.map(task => {
         return {
+          id: task.id,
           title: task.name,
-          start: task.delivery
+          start: task.delivery,
+          task: task
         }
       });
-      this.calendar.addEventSource(this.calendarOptions["events"]);
+      this.calendar.addEventSource(added);
+
+      tasks.removed.forEach(task => {
+        this.calendar.removeEvent(task.id);
+      });
+
+      let modified = tasks.modified.map(task => {
+        this.calendar.removeEvent(task.id);
+        return {
+          id: task.id,
+          title: task.name,
+          start: task.delivery,
+          task: task
+        }
+      });      
+      this.calendar.addEventSource(modified);
     });
   }
 

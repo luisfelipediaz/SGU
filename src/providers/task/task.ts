@@ -19,14 +19,25 @@ export class TaskProvider {
     return this.taskCollection.doc(task.id).set(task);
   }
 
-  getTasks(): Observable<Task[]>{
-    return this.taskCollection.stateChanges(["added"]).map(tasks => 
-    {
-      return tasks.map(task => {
-        return {
-          ...task.payload.doc.data()
-        } as Task
-      })
+  getTasks(): Observable<{ added: Task[], removed: Task[], modified: Task[] }> {
+    return this.taskCollection.stateChanges(["added", "removed", "modified"]).map(tasks => {
+      return {
+        added: tasks.filter(task => task.type === "added").map(task => {
+          return {
+            ...task.payload.doc.data()
+          } as Task
+        }),
+        removed: tasks.filter(task => task.type === "removed").map(task => {
+          return {
+            ...task.payload.doc.data()
+          } as Task
+        }),
+        modified: tasks.filter(task => task.type === "modified").map(task => {
+          return {
+            ...task.payload.doc.data()
+          } as Task
+        })
+      }
     });
   }
 
