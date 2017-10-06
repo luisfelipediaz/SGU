@@ -8,7 +8,7 @@
     </ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding id="page3">
+<ion-content padding>
   <h3 id="registrar-heading1" style="color:#000000;">
     Registrar nuevo
   </h3>
@@ -17,40 +17,38 @@
       <ion-label>
         Nombre
       </ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
+      <ion-input type="text" [(ngModel)]="name" name="name" placeholder="Ej. Entrega final del proyecto"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Fecha</ion-label>
+      <ion-datetime displayFormat="MMM DD, YYYY HH:mm" [(ngModel)]="delivery" name="date"></ion-datetime>
+    </ion-item>
+    <ion-item id="registrar-select2">
+      <ion-label>
+        Prioridad
+      </ion-label>
+      <ion-select name="priority" [(ngModel)]="priority">
+        <ion-option value="A">
+          Alta
+        </ion-option>
+        <ion-option value="M">
+          Media
+        </ion-option>
+        <ion-option value="B">
+          Baja
+        </ion-option>
+      </ion-select>
     </ion-item>
     <ion-item id="registrar-input3">
       <ion-label>
         Descripción
       </ion-label>
-      <ion-input type="text" placeholder=""></ion-input>
+      <ion-textarea type="text" [(ngModel)]="descripcion" name="descripcion" placeholder="Debemos entregar el WBS, las fuentes del proyecto y el documento"></ion-textarea>
     </ion-item>
-    <ion-item id="registrar-input4">
-      <ion-label>
-        Fecha
-      </ion-label>
-      <ion-input type="date" placeholder=""></ion-input>
-    </ion-item>
-    <ion-item id="registrar-select2">
-      <ion-label>
-        Select
-      </ion-label>
-      <ion-select name="">
-        <ion-option>
-          Alta
-        </ion-option>
-        <ion-option>
-          Media
-        </ion-option>
-        <ion-option>
-          Baja
-        </ion-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-        <button id="notificaciones-button2" ion-button color="primary" block>
-            Guardar
-          </button>
-    </ion-item>
+
+    <button id="notificaciones-button2" ion-button color="primary" (click)="save()" block>
+      Guardar
+    </button>
+
   </form>
 </ion-content>

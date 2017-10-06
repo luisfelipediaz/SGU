@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the RegisterPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Prioritys } from '../../app/app.enums';
 
 @IonicPage()
 @Component({
@@ -15,11 +9,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class RegisterPage {
 
+  
+
+  delivery: string = (new Date()).toISOString();
+  name: string;
+  descripcion: string;
+  priority: string = Prioritys.Media
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RegisterPage');
+
+  }
+
+  save() {
   }
 
 }
