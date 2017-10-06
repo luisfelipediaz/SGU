@@ -15,11 +15,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AvailabilityPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  calendarOptions = {
+    height: 'parent',
+    fixedWeekCount: false,
+    defaultDate: new Date(),
+    editable: true,
+    eventLimit: true, // allow "more" link when too many events
+    events: [],
+    dayClick: (date, jsEvent, view) => {
+      debugger;
+      console.log(date);      
+    }
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AvailabilityPage');
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
 }
