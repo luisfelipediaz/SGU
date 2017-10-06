@@ -15,11 +15,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class NotificationsPage {
 
+  tasks: string[] = [
+    "Trabajo 1",
+    "Trabajo 2",
+    "Trabajo 3"
+  ]
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad NotificationsPage');
   }
 
 }
