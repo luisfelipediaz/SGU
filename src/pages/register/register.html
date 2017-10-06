@@ -12,22 +12,22 @@
   <h3 id="registrar-heading1" style="color:#000000;">
     Registrar nuevo
   </h3>
-  <form id="registrar-form1">
+  <form [formGroup]="formTask" novalidate>
     <ion-item id="registrar-input2">
       <ion-label>
-        Nombre
+        Nombre:
       </ion-label>
-      <ion-input type="text" [(ngModel)]="name" name="name" placeholder="Ej. Entrega final del proyecto"></ion-input>
+      <ion-input type="text" formControlName="name" placeholder="Ej. Entrega final del proyecto"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Fecha</ion-label>
-      <ion-datetime displayFormat="MMM DD, YYYY HH:mm" [(ngModel)]="delivery" name="date"></ion-datetime>
+      <ion-datetime displayFormat="MMM DD, YYYY HH:mm" formControlName="delivery"></ion-datetime>
     </ion-item>
     <ion-item id="registrar-select2">
       <ion-label>
-        Prioridad
+        Prioridad:
       </ion-label>
-      <ion-select name="priority" [(ngModel)]="priority">
+      <ion-select formControlName="priority">
         <ion-option value="A">
           Alta
         </ion-option>
@@ -41,12 +41,12 @@
     </ion-item>
     <ion-item id="registrar-input3">
       <ion-label>
-        Descripción
+        Descripción:
       </ion-label>
-      <ion-textarea type="text" [(ngModel)]="descripcion" name="descripcion" placeholder="Debemos entregar el WBS, las fuentes del proyecto y el documento"></ion-textarea>
+      <ion-textarea type="text" formControlName="description" placeholder="Debemos entregar el WBS, las fuentes del proyecto y el documento"></ion-textarea>
     </ion-item>
 
-    <button id="notificaciones-button2" ion-button color="primary" (click)="save()" block>
+    <button id="notificaciones-button2" ion-button color="primary" [disabled]="formTask?.invalid"  (click)="save()" block>
       Guardar
     </button>
 

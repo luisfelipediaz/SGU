@@ -11,6 +11,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AppConfig } from './app.config';
+import { TaskProvider } from '../providers/task/task';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AppConfig } from './app.config';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    TaskProvider
   ]
 })
 export class AppModule { }

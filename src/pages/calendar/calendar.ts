@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Task } from '../../app/data-model';
+import { CalendarComponent } from '../../components/calendar/calendar';
+import { TaskProvider } from '../../providers/task/task';
 
 /**
  * Generated class for the CalendarPage page.
@@ -14,6 +17,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'calendar.html',
 })
 export class CalendarPage {
+
+  @ViewChild(CalendarComponent) calendar: CalendarComponent;
 
   calendarOptions: Object = {
     height: 'parent',
@@ -36,11 +41,22 @@ export class CalendarPage {
     }
   };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public taskProvider: TaskProvider) {
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CalendarPage');
+    this.taskProvider.getTasks().subscribe(tasks => {
+
+      debugger;
+      this.calendarOptions["events"] = tasks.map((task) => {
+        return {
+          title: task.name,
+          start: task.delivery
+        }
+      });
+      this.calendar.addEventSource(this.calendarOptions["events"]);
+    });
   }
 
 }
