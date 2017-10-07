@@ -49,7 +49,7 @@
         "typescript": "2.3.4"
     },
     "description": "Universidad el bosque proyecto nucleo 2",
-    "cordova": {
+    "cordova": { 
         "plugins": {
             "cordova-plugin-device": {},
             "cordova-plugin-splashscreen": {},
