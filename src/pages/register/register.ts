@@ -49,7 +49,7 @@ export class RegisterPage {
     });
     this.task.id = null;
 
-    if(!!this.navParams.data) this.navCtrl.pop();
+    if(!!this.navParams.data.task) this.navCtrl.pop();
   }
 
   prepareTask(): Task {

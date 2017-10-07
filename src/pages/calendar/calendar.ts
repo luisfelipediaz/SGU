@@ -17,6 +17,9 @@ export class CalendarPage {
   calendarOptions: Object = {
     height: 'parent',
     fixedWeekCount: false,
+    defaultView: 'listWeek',
+    noEventsMessage: "¡No tienes nada para esta semana!",
+    locale: "es",
     defaultDate: new Date(),
     editable: true,
     eventLimit: true, // allow "more" link when too many events

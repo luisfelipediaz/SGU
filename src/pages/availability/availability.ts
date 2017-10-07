@@ -24,7 +24,7 @@ export class AvailabilityPage {
     events: [],
     dayClick: (date, jsEvent, view) => {
       debugger;
-      console.log(date);      
+      console.log(date);
     }
   }
 
