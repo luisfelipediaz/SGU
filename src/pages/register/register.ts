@@ -54,13 +54,12 @@ export class RegisterPage {
 
   prepareTask(): Task {
     let formTask = this.formTask.value;
-
     return {
       id: this.task.id,
       name: formTask.name as string,
       description: formTask.description as string,
       priority: formTask.priority as string,
-      delivery: formTask.delivery as string,
+      delivery: new Date(formTask.delivery).getTime(),
       optimistic: +formTask.optimistic,
       probable: +formTask.probable,
       pessimistic: +formTask.pessimistic

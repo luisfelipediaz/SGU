@@ -28,7 +28,7 @@ export class CalendarPage {
       console.log(event);
       this.navCtrl.push('RegisterPage', {
         task: event.task as Task
-      })
+      });
     }
   };
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 
 /**
  * Generated class for the AvailabilityPage page.
@@ -20,15 +20,21 @@ export class AvailabilityPage {
     fixedWeekCount: false,
     defaultDate: new Date(),
     editable: true,
+    locale: 'es',
     eventLimit: true, // allow "more" link when too many events
     events: [],
-    dayClick: (date, jsEvent, view) => {
-      debugger;
-      console.log(date);
+    dayClick: (date) => {
+      const modal =  this.modalCtrl.create('NewAvailabilityPage', {
+        date: date
+      });
+      modal.present();
     }
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public modalCtrl: ModalController) {
   }
 
 }
