@@ -24,7 +24,7 @@
   </ion-item>
   <ion-item>
     <ion-label>Recurrente:</ion-label>
-    <ion-checkbox [(ngModel)]="availability.recurrent"></ion-checkbox>
+    <ion-toggle [(ngModel)]="availability.recurrent"></ion-toggle>
   </ion-item>
   <button ion-button block (click)="save()">Guardar</button>
 </ion-content>

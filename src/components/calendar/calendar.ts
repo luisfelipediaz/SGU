@@ -13,59 +13,35 @@ import { Options } from "fullcalendar";
   template: '<div></div>',
   selector: 'angular2-fullcalendar'
 })
-export class CalendarComponent implements OnInit, AfterViewInit, AfterContentChecked, AfterViewChecked {
+export class CalendarComponent implements OnInit, AfterViewInit {
 
   @Input() options: Options;
-  text: string;
-  calendarInitiated: boolean;
 
   constructor(private element: ElementRef) {
   }
 
   ngOnInit(): void {
-    // console.log("ngOnInit");
   }
 
   ngAfterViewInit() {
     setTimeout(() => {
-      // console.log("100ms after ngAfterViewInit ");
       $('angular2-fullcalendar').fullCalendar(this.options);
     }, 100)
   }
-  ngAfterContentChecked() {
-  }
-  ngAfterViewChecked() {
-  }
-
-  fullCalendar(...args: any[]) {
-    if (!args) {
-      return;
-    }
-    switch (args.length) {
-      case 0:
-        return;
-      case 1:
-        return $(this.element.nativeElement).fullCalendar(args[0]);
-      case 2:
-        return $(this.element.nativeElement).fullCalendar(args[0], args[1]);
-      case 3:
-        return $(this.element.nativeElement).fullCalendar(args[0], args[1], args[2]);
-    }
-  }
 
   updateEvent(event) {
-    return $(this.element.nativeElement).fullCalendar('updateEvent', event);
+    $(this.element.nativeElement).fullCalendar('updateEvent', event);
   }
 
   clientEvents(idOrFilter) {
-    return $(this.element.nativeElement).fullCalendar('clientEvents', idOrFilter);
+    $(this.element.nativeElement).fullCalendar('clientEvents', idOrFilter);
   }
 
   addEventSource(events) {
-    return $(this.element.nativeElement).fullCalendar('addEventSource', events);
+    $(this.element.nativeElement).fullCalendar('addEventSource', events);
   }
 
   removeEvent(event) {
-    return $(this.element.nativeElement).fullCalendar('removeEvents', event);
+    $(this.element.nativeElement).fullCalendar('removeEvents', event);
   }
 }

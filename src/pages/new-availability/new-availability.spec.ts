@@ -12,7 +12,8 @@ import { NewAvailabilityPage } from './new-availability';
 describe('NewAvailabilityPage', () => {
     let fixture: ComponentFixture<NewAvailabilityPage>;
     let component: NewAvailabilityPage;
-    const params = NavParamsMock.instance().data = {
+    const navParamsMock: NavParams = NavParamsMock.instance();
+    navParamsMock.data = {
         date: new Date()
     }
 
@@ -25,8 +26,8 @@ describe('NewAvailabilityPage', () => {
             ],
             providers: [
                 { provide: NavController, useClass: NavMock },
-                { provide: NavParams, useClass: params },
-                { provide: ModalController, useClass: ModalControllerMock }
+                { provide: NavParams, useFactory: () => navParamsMock },
+                { provide: ModalController, useFactory: () => ModalControllerMock.instance() }
             ]
         })
     }));

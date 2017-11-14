@@ -8,22 +8,33 @@ import { NavParamsMock } from 'ionic-mocks'
 import { ModalController } from 'ionic-angular/components/modal/modal-controller';
 import { ModalControllerMock } from 'ionic-mocks/dist/angular/modal-controller';
 import { RegisterPage } from './register';
+import { TaskProvider } from '../../providers/task/task';
+import { AngularFireModule } from 'angularfire2';
+import { AppConfig } from '../../app/app.config';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 describe('RegisterPage', () => {
     let fixture: ComponentFixture<RegisterPage>;
     let component: RegisterPage;
+    const navParamsMock: NavParams = NavParamsMock.instance();
+    navParamsMock.data = {
+        task: null
+    }
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [RegisterPage],
             imports: [
                 IonicModule.forRoot(RegisterPage),
-                ComponentsModule
+                ComponentsModule,
+                AngularFireModule.initializeApp(AppConfig.firebaseConfig),
+                AngularFirestoreModule
             ],
             providers: [
+                TaskProvider,
                 { provide: NavController, useClass: NavMock },
-                { provide: NavParams, useClass: NavParamsMock  },
-                { provide: ModalController, useClass: ModalControllerMock }
+                { provide: NavParams, useFactory: () => navParamsMock  },
+                { provide: ModalController, useFactory: () => ModalControllerMock.instance() }
             ]
         })
     }));

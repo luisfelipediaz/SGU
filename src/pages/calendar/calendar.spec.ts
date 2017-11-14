@@ -10,7 +10,9 @@ import { ModalControllerMock } from 'ionic-mocks/dist/angular/modal-controller';
 
 import { CalendarPage } from './calendar';
 import { TaskProvider } from '../../providers/task/task';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireModule } from 'angularfire2';
+import { AppConfig } from '../../app/app.config';
 
 describe('CalendarPage', () => {
     let fixture: ComponentFixture<CalendarPage>;
@@ -21,11 +23,12 @@ describe('CalendarPage', () => {
             declarations: [CalendarPage],
             imports: [
                 IonicModule.forRoot(CalendarPage),
-                ComponentsModule
+                ComponentsModule,
+                AngularFireModule.initializeApp(AppConfig.firebaseConfig),
+                AngularFirestoreModule
             ],
             providers: [
                 TaskProvider,
-                AngularFirestore,
                 { provide: NavController, useClass: NavMock },
                 { provide: NavParams, useClass: NavParamsMock  },
                 { provide: ModalController, useClass: ModalControllerMock }
