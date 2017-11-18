@@ -1,29 +1,26 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
+import { Availability } from '../../app/data-model';
+import { AvailabilityProvider } from '../../providers/availability/availability';
 
-/**
- * Generated class for the NewAvailabilityPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
-@IonicPage()
 @Component({
   selector: 'page-new-availability',
   templateUrl: 'new-availability.html',
 })
 export class NewAvailabilityPage {
 
-  availability: any = {
+  availability: Availability = {
+    id: null,
     date: null,
-    timeStarts: new Date().toLocaleTimeString()
+    time: new Date().toLocaleTimeString(),
+    recurrent: false
   };
 
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams) {
-      this.availability.date = this.navParams.data.date._i;
+    public navParams: NavParams,
+    public availabilityProvider: AvailabilityProvider) {
+    this.availability.date = this.navParams.data.date._i;
   }
 
   ionViewDidLoad() {
@@ -31,7 +28,9 @@ export class NewAvailabilityPage {
   }
 
   save() {
-    console.log(this.availability);
+    this.availabilityProvider.post(this.availability).then(() => {
+      
+    }, () => alert(`Ocurrió un error al tratar de guardar la disponibilidad`));
   }
 
 }

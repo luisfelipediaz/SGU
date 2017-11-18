@@ -12,11 +12,26 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AppConfig } from './app.config';
 import { TaskProvider } from '../providers/task/task';
+import { AvailabilityProvider } from '../providers/availability/availability';
+import { AvailabilityPage } from '../pages/availability/availability';
+import { CalendarPage } from '../pages/calendar/calendar';
+import { NewAvailabilityPage } from '../pages/new-availability/new-availability';
+import { NotificationsPage } from '../pages/notifications/notifications';
+import { RegisterPage } from '../pages/register/register';
+import { CalendarComponent } from '../components/calendar/calendar';
+import { NotificationCardComponent } from '../components/notification-card/notification-card';
 
 @NgModule({
   declarations: [
     MyApp,
-    TabsPage
+    TabsPage,
+    AvailabilityPage,
+    CalendarPage,
+    NewAvailabilityPage,
+    NotificationsPage,
+    RegisterPage,
+    CalendarComponent,
+    NotificationCardComponent
   ],
   imports: [
     BrowserModule,
@@ -27,13 +42,19 @@ import { TaskProvider } from '../providers/task/task';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    TabsPage
+    TabsPage,
+    AvailabilityPage,
+    CalendarPage,
+    NewAvailabilityPage,
+    NotificationsPage,
+    RegisterPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    TaskProvider
+    TaskProvider,
+    AvailabilityProvider
   ]
 })
 export class AppModule { }

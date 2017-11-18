@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { Task } from '../../app/data-model';
 import { TaskProvider } from '../../providers/task/task';
 
-@IonicPage()
 @Component({
   selector: 'page-register',
   templateUrl: 'register.html',
@@ -54,12 +53,14 @@ export class RegisterPage {
 
   prepareTask(): Task {
     let formTask = this.formTask.value;
+    debugger;
+    const delivery: Date = new Date(formTask.delivery);
     return {
       id: this.task.id,
       name: formTask.name as string,
       description: formTask.description as string,
       priority: formTask.priority as string,
-      delivery: new Date(formTask.delivery).getTime(),
+      delivery: delivery.getTime(),
       optimistic: +formTask.optimistic,
       probable: +formTask.probable,
       pessimistic: +formTask.pessimistic

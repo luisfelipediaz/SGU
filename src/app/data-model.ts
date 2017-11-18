@@ -8,3 +8,10 @@ export class Task {
     probable: number = 0;
     pessimistic: number = 0;
 }
+
+export class Availability {
+    id: string = null;
+    date: string;
+    time: string;
+    recurrent: boolean;
+}

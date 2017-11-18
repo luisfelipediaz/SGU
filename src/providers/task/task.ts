@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 
-import 'rxjs/add/operator/map';
 import { Task } from '../../app/data-model';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';

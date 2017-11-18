@@ -1,14 +1,8 @@
-import { Component, Input, OnInit, AfterViewInit, AfterContentChecked, AfterViewChecked, ElementRef } from '@angular/core';
+import { Component, Input, OnInit, AfterViewInit, ElementRef } from '@angular/core';
 import * as $ from 'jquery';
 import 'fullcalendar';
 import { Options } from "fullcalendar";
 
-/*
-  Generated class for the Calendar component.
-
-  See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
-  for more info on Angular 2 Components.
-*/
 @Component({
   template: '<div></div>',
   selector: 'angular2-fullcalendar'

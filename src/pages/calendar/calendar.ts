@@ -1,10 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { CalendarComponent } from '../../components/calendar/calendar';
 import { TaskProvider } from '../../providers/task/task';
 import { Task } from '../../app/data-model';
 
-@IonicPage()
 @Component({
   selector: 'page-calendar',
   templateUrl: 'calendar.html',
