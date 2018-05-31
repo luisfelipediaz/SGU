@@ -27,10 +27,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     $(this.element.nativeElement).fullCalendar('updateEvent', event);
   }
 
-  clientEvents(idOrFilter) {
-    $(this.element.nativeElement).fullCalendar('clientEvents', idOrFilter);
-  }
-
   addEventSource(events) {
     $(this.element.nativeElement).fullCalendar('addEventSource', events);
   }
